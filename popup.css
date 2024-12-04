@@ -74,28 +74,34 @@ h1 {
   color: var(--text-color);
   text-align: center;
   text-shadow: 0 0 10px rgba(255, 0, 80, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .value-container {
   background: var(--value-container-bg);
   border: 1px solid var(--value-container-border);
   border-radius: 8px;
-  padding: 20px;
+  padding: 20px 15px;
   margin-bottom: 15px;
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   box-sizing: border-box;
   transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .value-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
   position: relative;
   height: 32px;
+  gap: 8px;
+  overflow: visible;
 }
 
 .value-row:last-child {
@@ -105,9 +111,9 @@ h1 {
 .label {
   color: var(--label-color);
   font-size: 14px;
-  width: 120px;
-  text-align: right;
-  padding-right: 10px;
+  min-width: 140px;
+  text-align: left;
+  flex-shrink: 0;
 }
 
 #gmvValue, #affiliateValue, #diffValue, #orderValue {
@@ -117,9 +123,15 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  width: 140px;
+  min-width: 120px;
+  max-width: none;
   text-align: right;
-  margin: 0 10px;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .copyButton {
@@ -132,12 +144,16 @@ h1 {
   font-size: 12px;
   font-weight: 500;
   transition: all 0.2s ease;
-  min-width: 50px;
+  min-width: 45px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  margin-left: 8px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .copyButton:hover {
@@ -173,4 +189,35 @@ h1 {
 
 .value-container {
   animation: glow 2s infinite;
+}
+
+/* 添加自适应字体大小 */
+@media screen and (max-width: 400px) {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+    font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (400 - 300)));
+    min-width: 100px;
+  }
+  
+  .label {
+    min-width: 120px;
+  }
+}
+
+/* 添加数值长度自适应字体大小 */
+@media screen and (min-width: 401px) {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+    font-size: clamp(14px, 24px, 24px);  /* 最小 14px，最大 24px */
+  }
+  
+  /* 当数值超过一定长度时逐步缩小字体 */
+  #gmvValue:not(:empty), 
+  #affiliateValue:not(:empty), 
+  #diffValue:not(:empty), 
+  #orderValue:not(:empty) {
+    font-size: clamp(
+      16px,  /* 最小字体大小改为 16px */
+      calc(24px - (var(--content-length, 0) - 8) * 0.8px),  /* 调整缩放比例 */
+      24px   /* 最大字体大小 */
+    );
+  }
 } 

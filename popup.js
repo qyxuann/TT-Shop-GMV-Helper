@@ -167,33 +167,33 @@ document.addEventListener('DOMContentLoaded', function() {
       args: []
     }, (results) => {
       if (chrome.runtime.lastError) {
-        diffValue.textContent = '提取错误：' + chrome.runtime.lastError.message;
-        gmvValue.textContent = '---';
-        affiliateValue.textContent = '---';
-        orderValue.textContent = '---';
+        updateValueWithAdaptiveSize(diffValue, '提取错误：' + chrome.runtime.lastError.message);
+        updateValueWithAdaptiveSize(gmvValue, '---');
+        updateValueWithAdaptiveSize(affiliateValue, '---');
+        updateValueWithAdaptiveSize(orderValue, '---');
         return;
       }
 
       if (!results || !results[0]) {
-        diffValue.textContent = '提取失败';
-        gmvValue.textContent = '---';
-        affiliateValue.textContent = '---';
-        orderValue.textContent = '---';
+        updateValueWithAdaptiveSize(diffValue, '提取失败');
+        updateValueWithAdaptiveSize(gmvValue, '---');
+        updateValueWithAdaptiveSize(affiliateValue, '---');
+        updateValueWithAdaptiveSize(orderValue, '---');
         return;
       }
 
       const values = results[0].result;
       if (values && typeof values.gmv === 'number' && typeof values.affiliate === 'number' && typeof values.orders === 'number') {
-        gmvValue.textContent = values.gmv.toFixed(2);
-        affiliateValue.textContent = values.affiliate.toFixed(2);
-        orderValue.textContent = values.orders.toLocaleString();
+        updateValueWithAdaptiveSize(gmvValue, values.gmv.toFixed(2));
+        updateValueWithAdaptiveSize(affiliateValue, values.affiliate.toFixed(2));
+        updateValueWithAdaptiveSize(orderValue, values.orders.toString());
         const difference = Math.abs(values.gmv - values.affiliate);
-        diffValue.textContent = difference.toFixed(2);
+        updateValueWithAdaptiveSize(diffValue, difference.toFixed(2));
       } else {
-        diffValue.textContent = '提取失败';
-        gmvValue.textContent = '---';
-        affiliateValue.textContent = '---';
-        orderValue.textContent = '---';
+        updateValueWithAdaptiveSize(diffValue, '提取失败');
+        updateValueWithAdaptiveSize(gmvValue, '---');
+        updateValueWithAdaptiveSize(affiliateValue, '---');
+        updateValueWithAdaptiveSize(orderValue, '---');
       }
     });
   });
@@ -217,4 +217,38 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 1000);
     });
   });
+
+  // 在更新数值的地方添加以下函数
+  function updateValueWithAdaptiveSize(element, value) {
+    element.textContent = value;
+    
+    // 创建一个临时 span 来测量实际宽度
+    const measureSpan = document.createElement('span');
+    measureSpan.style.visibility = 'hidden';
+    measureSpan.style.position = 'absolute';
+    measureSpan.style.fontSize = '24px';
+    measureSpan.style.fontWeight = 'bold';
+    measureSpan.style.background = 'linear-gradient(45deg, #FF0050, #00F2EA)';
+    measureSpan.style.webkitBackgroundClip = 'text';
+    measureSpan.style.backgroundClip = 'text';
+    measureSpan.style.webkitTextFillColor = 'transparent';
+    measureSpan.textContent = value;
+    document.body.appendChild(measureSpan);
+    
+    // 获取实际宽度
+    const width = measureSpan.offsetWidth;
+    
+    // 调整计算方法：当宽度超过 140px 时才开始缩放
+    const baseWidth = 140;
+    const contentLength = width > baseWidth ? Math.ceil((width - baseWidth) / 10) + 8 : 8;
+    
+    console.log(`Value: ${value}, Width: ${width}px, Length: ${contentLength}`);
+    
+    document.body.removeChild(measureSpan);
+    element.style.setProperty('--content-length', contentLength);
+  }
+
+  // 使用示例：
+  // 将原来的 element.textContent = value 改为：
+  updateValueWithAdaptiveSize(element, value);
 }); 
