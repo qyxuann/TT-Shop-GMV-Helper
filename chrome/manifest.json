@@ -2,26 +2,22 @@
   "manifest_version": 3,
   "name": "TT Shop GMV Helper",
   "version": "1.0",
-  "description": "Calculate Non-Affiliate GMV and easy to copy data to clipboard",
+  "description": "帮助TikTok Shop卖家快速查看和复制GMV数据",
   "permissions": [
-    "storage",
     "activeTab",
     "scripting"
-  ],
-  "host_permissions": [
-    "https://seller-us.tiktok.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "../shared/assets/images/icon16.png",
+      "48": "../shared/assets/images/icon48.png",
+      "128": "../shared/assets/images/icon128.png"
     }
   },
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "16": "../shared/assets/images/icon16.png",
+    "48": "../shared/assets/images/icon48.png",
+    "128": "../shared/assets/images/icon128.png"
   }
 } 
