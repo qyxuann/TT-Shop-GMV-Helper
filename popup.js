@@ -203,20 +203,38 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function() {
       const targetId = this.dataset.target;
       const textToCopy = document.getElementById(targetId).textContent;
-      const tempInput = document.createElement('input');
-      tempInput.style.position = 'absolute';
-      tempInput.style.left = '-9999px';
-      tempInput.value = textToCopy;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-      this.textContent = '已复制';
-      setTimeout(() => {
-        this.textContent = '复制';
-      }, 1000);
+      copyToClipboard(textToCopy, this);
     });
   });
+
+  // 添加一键复制所有数据的功能
+  const copyAllButton = document.getElementById('copyAllButton');
+  copyAllButton.addEventListener('click', function() {
+    const gmv = document.getElementById('gmvValue').textContent;
+    const affiliate = document.getElementById('affiliateValue').textContent;
+    const orders = document.getElementById('orderValue').textContent;
+    
+    const allData = `${gmv}\t${affiliate}\t${orders}`;
+    copyToClipboard(allData, this);
+  });
+
+  // 封装复制功能
+  function copyToClipboard(text, button) {
+    const tempInput = document.createElement('input');
+    tempInput.style.position = 'absolute';
+    tempInput.style.left = '-9999px';
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    
+    const originalText = button.textContent;
+    button.textContent = '已复制';
+    setTimeout(() => {
+      button.textContent = originalText;
+    }, 1000);
+  }
 
   // 在更新数值的地方添加以下函数
   function updateValueWithAdaptiveSize(element, value) {
