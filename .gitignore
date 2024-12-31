@@ -23,6 +23,13 @@ DerivedData/
 *.dSYM.zip
 *.dSYM
 
+# Xcode Patch
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
 # Node modules (如果之后需要)
 node_modules/
 

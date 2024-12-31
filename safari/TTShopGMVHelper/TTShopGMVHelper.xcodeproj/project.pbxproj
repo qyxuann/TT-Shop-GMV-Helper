@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FAE09BA2D23C70300CD926C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE09B92D23C70300CD926C /* AppDelegate.swift */; };
+		5FAE09BE2D23C70300CD926C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09BD2D23C70300CD926C /* Base */; };
+		5FAE09C02D23C70300CD926C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09BF2D23C70300CD926C /* Icon.png */; };
+		5FAE09C22D23C70300CD926C /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09C12D23C70300CD926C /* Style.css */; };
+		5FAE09C42D23C70300CD926C /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09C32D23C70300CD926C /* Script.js */; };
+		5FAE09C62D23C70300CD926C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE09C52D23C70300CD926C /* ViewController.swift */; };
+		5FAE09C92D23C70300CD926C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09C82D23C70300CD926C /* Base */; };
+		5FAE09CB2D23C70500CD926C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09CA2D23C70500CD926C /* Assets.xcassets */; };
+		5FAE09D32D23C70500CD926C /* TTShopGMVHelper Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5FAE09D22D23C70500CD926C /* TTShopGMVHelper Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5FAE09D82D23C70500CD926C /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAE09D72D23C70500CD926C /* SafariWebExtensionHandler.swift */; };
+		5FAE09DB2D23C70500CD926C /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09DA2D23C70500CD926C /* _locales */; };
+		5FAE09DD2D23C70500CD926C /* images in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09DC2D23C70500CD926C /* images */; };
+		5FAE09DF2D23C70500CD926C /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09DE2D23C70500CD926C /* manifest.json */; };
+		5FAE09E12D23C70500CD926C /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09E02D23C70500CD926C /* background.js */; };
+		5FAE09E32D23C70500CD926C /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09E22D23C70500CD926C /* content.js */; };
+		5FAE09E52D23C70500CD926C /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09E42D23C70500CD926C /* popup.html */; };
+		5FAE09E72D23C70500CD926C /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09E62D23C70500CD926C /* popup.css */; };
+		5FAE09E92D23C70500CD926C /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 5FAE09E82D23C70500CD926C /* popup.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5FAE09D42D23C70500CD926C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FAE09AE2D23C70300CD926C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FAE09D12D23C70500CD926C;
+			remoteInfo = "TTShopGMVHelper Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5FAE09F12D23C70500CD926C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5FAE09D32D23C70500CD926C /* TTShopGMVHelper Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5FAE09B62D23C70300CD926C /* TTShopGMVHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTShopGMVHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FAE09B92D23C70300CD926C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5FAE09BD2D23C70300CD926C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
+		5FAE09BF2D23C70300CD926C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		5FAE09C12D23C70300CD926C /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		5FAE09C32D23C70300CD926C /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		5FAE09C52D23C70300CD926C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5FAE09C82D23C70300CD926C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5FAE09CA2D23C70500CD926C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5FAE09CC2D23C70500CD926C /* TTShopGMVHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTShopGMVHelper.entitlements; sourceTree = "<group>"; };
+		5FAE09CD2D23C70500CD926C /* TTShopGMVHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTShopGMVHelper.entitlements; sourceTree = "<group>"; };
+		5FAE09D22D23C70500CD926C /* TTShopGMVHelper Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TTShopGMVHelper Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FAE09D72D23C70500CD926C /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		5FAE09DA2D23C70500CD926C /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		5FAE09DC2D23C70500CD926C /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		5FAE09DE2D23C70500CD926C /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		5FAE09E02D23C70500CD926C /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		5FAE09E22D23C70500CD926C /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		5FAE09E42D23C70500CD926C /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		5FAE09E62D23C70500CD926C /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		5FAE09E82D23C70500CD926C /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		5FAE09EA2D23C70500CD926C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FAE09EB2D23C70500CD926C /* TTShopGMVHelper_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TTShopGMVHelper_Extension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5FAE09B32D23C70300CD926C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FAE09CF2D23C70500CD926C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5FAE09AD2D23C70300CD926C = {
+			isa = PBXGroup;
+			children = (
+				5FAE09B82D23C70300CD926C /* TTShopGMVHelper */,
+				5FAE09D62D23C70500CD926C /* TTShopGMVHelper Extension */,
+				5FAE09B72D23C70300CD926C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5FAE09B72D23C70300CD926C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5FAE09B62D23C70300CD926C /* TTShopGMVHelper.app */,
+				5FAE09D22D23C70500CD926C /* TTShopGMVHelper Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5FAE09B82D23C70300CD926C /* TTShopGMVHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5FAE09B92D23C70300CD926C /* AppDelegate.swift */,
+				5FAE09C52D23C70300CD926C /* ViewController.swift */,
+				5FAE09C72D23C70300CD926C /* Main.storyboard */,
+				5FAE09CA2D23C70500CD926C /* Assets.xcassets */,
+				5FAE09CC2D23C70500CD926C /* TTShopGMVHelper.entitlements */,
+				5FAE09CD2D23C70500CD926C /* TTShopGMVHelper.entitlements */,
+				5FAE09BB2D23C70300CD926C /* Resources */,
+			);
+			path = TTShopGMVHelper;
+			sourceTree = "<group>";
+		};
+		5FAE09BB2D23C70300CD926C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FAE09BC2D23C70300CD926C /* Main.html */,
+				5FAE09BF2D23C70300CD926C /* Icon.png */,
+				5FAE09C12D23C70300CD926C /* Style.css */,
+				5FAE09C32D23C70300CD926C /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5FAE09D62D23C70500CD926C /* TTShopGMVHelper Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5FAE09D72D23C70500CD926C /* SafariWebExtensionHandler.swift */,
+				5FAE09EA2D23C70500CD926C /* Info.plist */,
+				5FAE09EB2D23C70500CD926C /* TTShopGMVHelper_Extension.entitlements */,
+				5FAE09D92D23C70500CD926C /* Resources */,
+			);
+			path = "TTShopGMVHelper Extension";
+			sourceTree = "<group>";
+		};
+		5FAE09D92D23C70500CD926C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FAE09DA2D23C70500CD926C /* _locales */,
+				5FAE09DC2D23C70500CD926C /* images */,
+				5FAE09DE2D23C70500CD926C /* manifest.json */,
+				5FAE09E02D23C70500CD926C /* background.js */,
+				5FAE09E22D23C70500CD926C /* content.js */,
+				5FAE09E42D23C70500CD926C /* popup.html */,
+				5FAE09E62D23C70500CD926C /* popup.css */,
+				5FAE09E82D23C70500CD926C /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5FAE09B52D23C70300CD926C /* TTShopGMVHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FAE09F22D23C70500CD926C /* Build configuration list for PBXNativeTarget "TTShopGMVHelper" */;
+			buildPhases = (
+				5FAE09B22D23C70300CD926C /* Sources */,
+				5FAE09B32D23C70300CD926C /* Frameworks */,
+				5FAE09B42D23C70300CD926C /* Resources */,
+				5FAE09F12D23C70500CD926C /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FAE09D52D23C70500CD926C /* PBXTargetDependency */,
+			);
+			name = TTShopGMVHelper;
+			productName = TTShopGMVHelper;
+			productReference = 5FAE09B62D23C70300CD926C /* TTShopGMVHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5FAE09D12D23C70500CD926C /* TTShopGMVHelper Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FAE09EE2D23C70500CD926C /* Build configuration list for PBXNativeTarget "TTShopGMVHelper Extension" */;
+			buildPhases = (
+				5FAE09CE2D23C70500CD926C /* Sources */,
+				5FAE09CF2D23C70500CD926C /* Frameworks */,
+				5FAE09D02D23C70500CD926C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TTShopGMVHelper Extension";
+			productName = "TTShopGMVHelper Extension";
+			productReference = 5FAE09D22D23C70500CD926C /* TTShopGMVHelper Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5FAE09AE2D23C70300CD926C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					5FAE09B52D23C70300CD926C = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					5FAE09D12D23C70500CD926C = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 5FAE09B12D23C70300CD926C /* Build configuration list for PBXProject "TTShopGMVHelper" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5FAE09AD2D23C70300CD926C;
+			productRefGroup = 5FAE09B72D23C70300CD926C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5FAE09B52D23C70300CD926C /* TTShopGMVHelper */,
+				5FAE09D12D23C70500CD926C /* TTShopGMVHelper Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5FAE09B42D23C70300CD926C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAE09C02D23C70300CD926C /* Icon.png in Resources */,
+				5FAE09C42D23C70300CD926C /* Script.js in Resources */,
+				5FAE09BE2D23C70300CD926C /* Base in Resources */,
+				5FAE09C22D23C70300CD926C /* Style.css in Resources */,
+				5FAE09CB2D23C70500CD926C /* Assets.xcassets in Resources */,
+				5FAE09C92D23C70300CD926C /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FAE09D02D23C70500CD926C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAE09E12D23C70500CD926C /* background.js in Resources */,
+				5FAE09E72D23C70500CD926C /* popup.css in Resources */,
+				5FAE09E52D23C70500CD926C /* popup.html in Resources */,
+				5FAE09DD2D23C70500CD926C /* images in Resources */,
+				5FAE09DF2D23C70500CD926C /* manifest.json in Resources */,
+				5FAE09DB2D23C70500CD926C /* _locales in Resources */,
+				5FAE09E32D23C70500CD926C /* content.js in Resources */,
+				5FAE09E92D23C70500CD926C /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5FAE09B22D23C70300CD926C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAE09C62D23C70300CD926C /* ViewController.swift in Sources */,
+				5FAE09BA2D23C70300CD926C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FAE09CE2D23C70500CD926C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAE09D82D23C70500CD926C /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5FAE09D52D23C70500CD926C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5FAE09D12D23C70500CD926C /* TTShopGMVHelper Extension */;
+			targetProxy = 5FAE09D42D23C70500CD926C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5FAE09BC2D23C70300CD926C /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FAE09BD2D23C70300CD926C /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		5FAE09C72D23C70300CD926C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FAE09C82D23C70300CD926C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5FAE09EC2D23C70500CD926C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5FAE09ED2D23C70500CD926C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		5FAE09EF2D23C70500CD926C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "TTShopGMVHelper Extension/TTShopGMVHelper_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TMZTT8QR3C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TTShopGMVHelper Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "TTShopGMVHelper Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyxuan.TTShopGMVHelper.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5FAE09F02D23C70500CD926C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "TTShopGMVHelper Extension/TTShopGMVHelper_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TMZTT8QR3C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TTShopGMVHelper Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "TTShopGMVHelper Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyxuan.TTShopGMVHelper.Extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5FAE09F32D23C70500CD926C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TTShopGMVHelper/TTShopGMVHelper.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TMZTT8QR3C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TTShopGMVHelper;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyxuan.TTShopGMVHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5FAE09F42D23C70500CD926C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TTShopGMVHelper/TTShopGMVHelper.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TMZTT8QR3C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TTShopGMVHelper;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.qyxuan.TTShopGMVHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5FAE09B12D23C70300CD926C /* Build configuration list for PBXProject "TTShopGMVHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FAE09EC2D23C70500CD926C /* Debug */,
+				5FAE09ED2D23C70500CD926C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5FAE09EE2D23C70500CD926C /* Build configuration list for PBXNativeTarget "TTShopGMVHelper Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FAE09EF2D23C70500CD926C /* Debug */,
+				5FAE09F02D23C70500CD926C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5FAE09F22D23C70500CD926C /* Build configuration list for PBXNativeTarget "TTShopGMVHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FAE09F32D23C70500CD926C /* Debug */,
+				5FAE09F42D23C70500CD926C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5FAE09AE2D23C70300CD926C /* Project object */;
+}

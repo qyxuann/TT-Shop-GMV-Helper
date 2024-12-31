@@ -1,0 +1,257 @@
+/* 主题变量 */
+:root {
+  --bg-color: #121212;
+  --container-bg: linear-gradient(45deg, #121212, #1D1D1D);
+  --text-color: #ffffff;
+  --label-color: #888;
+  --value-container-bg: #1D1D1D;
+  --value-container-border: #2D2D2D;
+}
+
+:root[data-theme="light"] {
+  --bg-color: #f5f5f5;
+  --container-bg: linear-gradient(45deg, #ffffff, #f0f0f0);
+  --text-color: #333333;
+  --label-color: #666;
+  --value-container-bg: #ffffff;
+  --value-container-border: #e0e0e0;
+}
+
+/* 主题切换按钮样式 */
+.theme-switch {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 设置基本样式 */
+body {
+  width: 420px;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  padding: 15px;
+  background: var(--container-bg);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 0, 80, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.value-container {
+  background: var(--value-container-bg);
+  border: 1px solid var(--value-container-border);
+  border-radius: 8px;
+  padding: 20px 15px;
+  margin-bottom: 15px;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.value-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  height: 32px;
+  gap: 8px;
+  overflow: visible;
+}
+
+.value-row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: var(--label-color);
+  font-size: 14px;
+  min-width: 140px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+#gmvValue, #affiliateValue, #diffValue, #orderValue {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #FF0050, #00F2EA);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  min-width: 120px;
+  max-width: none;
+  text-align: right;
+  white-space: nowrap;
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.copyButton {
+  background: linear-gradient(45deg, #FF0050, #00F2EA);
+  color: white;
+  border: none;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 45px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin-left: 8px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.copyButton:hover {
+  background: linear-gradient(45deg, #FF1A6A, #33F5ED);
+}
+
+.copyButton:active {
+  transform: scale(0.95);
+}
+
+/* 一键复制按钮样式 */
+.copy-all-row {
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.copyAllButton {
+  background: linear-gradient(45deg, #FF0050, #00F2EA);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.copyAllButton:hover {
+  background: linear-gradient(45deg, #FF1A6A, #33F5ED);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.copyAllButton:active {
+  transform: scale(0.98) translateY(0);
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 添加霓虹灯效果 */
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(255, 0, 80, 0.3), 0 0 10px rgba(0, 242, 234, 0.3); }
+  50% { box-shadow: 0 0 10px rgba(255, 0, 80, 0.5), 0 0 15px rgba(0, 242, 234, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(255, 0, 80, 0.3), 0 0 10px rgba(0, 242, 234, 0.3); }
+}
+
+.value-container {
+  animation: glow 2s infinite;
+}
+
+/* 添加自适应字体大小 */
+@media screen and (max-width: 400px) {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+    font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (400 - 300)));
+    min-width: 100px;
+  }
+  
+  .label {
+    min-width: 120px;
+  }
+}
+
+/* 添加数值长度自适应字体大小 */
+@media screen and (min-width: 401px) {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+    font-size: clamp(14px, 24px, 24px);  /* 最小 14px，最大 24px */
+  }
+  
+  /* 当数值超过一定长度时逐步缩小字体 */
+  #gmvValue:not(:empty), 
+  #affiliateValue:not(:empty), 
+  #diffValue:not(:empty), 
+  #orderValue:not(:empty) {
+    font-size: clamp(
+      16px,  /* 最小字体大小改为 16px */
+      calc(24px - (var(--content-length, 0) - 8) * 0.8px),  /* 调整缩放比例 */
+      24px   /* 最大字体大小 */
+    );
+  }
+} 

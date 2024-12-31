@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non-Affiliate GMV</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="theme-switch">
+      <button id="themeToggle" class="theme-toggle-btn">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+    <h1>GMV Helper</h1>
+    <div class="value-container">
+      <div class="value-row">
+        <span class="label">GMV:</span>
+        <span id="gmvValue">计算中...</span>
+        <button class="copyButton" data-target="gmvValue">复制</button>
+      </div>
+      <div class="value-row">
+        <span class="label">Affiliate GMV:</span>
+        <span id="affiliateValue">计算中...</span>
+        <button class="copyButton" data-target="affiliateValue">复制</button>
+      </div>
+      <div class="value-row">
+        <span class="label">Non-Affiliate GMV:</span>
+        <span id="diffValue">计算中...</span>
+        <button class="copyButton" data-target="diffValue">复制</button>
+      </div>
+      <div class="value-row">
+        <span class="label">Orders:</span>
+        <span id="orderValue">计算中...</span>
+        <button class="copyButton" data-target="orderValue">复制</button>
+      </div>
+      <div class="value-row copy-all-row">
+        <button id="copyAllButton" class="copyAllButton">一键复制</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
