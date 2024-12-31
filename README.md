@@ -1,5 +1,7 @@
 # TT Shop GMV Helper
 
+> 一个简单易用的浏览器扩展，帮助 TikTok Shop 卖家快速查看和复制 GMV 数据。支持 Chrome 和 Safari 浏览器，提供一键复制、深色模式等功能。
+
 [English](#english) | [中文](#chinese)
 
 <div id="chinese">
