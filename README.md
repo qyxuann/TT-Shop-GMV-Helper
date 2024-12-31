@@ -42,29 +42,6 @@
 3. 构建并运行项目
 4. 在 Safari 的扩展设置中启用该扩展
 
-### 更新记录
-
-#### 功能更新
-- feat: 添加一键复制按钮到界面
-- feat: 实现一键复制的核心逻辑
-- feat: 添加Safari扩展图标
-
-#### 样式更新
-- style: 添加一键复制按钮的样式设计
-
-#### 文档更新
-- docs: 添加项目说明文档
-- docs: 添加中英文切换功能
-
-#### 代码重构
-- refactor: 更新manifest.json中的图标路径
-- refactor: 优化项目结构，分离Chrome和Safari版本
-
-#### 其他更新
-- chore: 添加.gitignore文件
-- chore: 更新gitignore以排除Xcode用户特定文件
-- chore: 清理冗余的图片文件
-
 ### 技术栈
 
 - HTML5
@@ -111,29 +88,6 @@ A Chrome/Safari extension helping TikTok Shop sellers quickly view and copy sale
 2. Open `safari/TTShopGMVHelper` directory with Xcode
 3. Build and run the project
 4. Enable the extension in Safari's extension settings
-
-### Update History
-
-#### Feature Updates
-- feat: Add one-click copy button to UI
-- feat: Implement one-click copy core logic
-- feat: Add Safari extension icons
-
-#### Style Updates
-- style: Add one-click copy button styling
-
-#### Documentation Updates
-- docs: Add project documentation
-- docs: Add English-Chinese language switch
-
-#### Code Refactoring
-- refactor: Update manifest.json icon paths
-- refactor: Optimize project structure, separate Chrome and Safari versions
-
-#### Other Updates
-- chore: Add .gitignore file
-- chore: Update gitignore to exclude Xcode user-specific files
-- chore: Clean up redundant image files
 
 ### Tech Stack
 
