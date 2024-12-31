@@ -2,10 +2,11 @@
 
 [English](#english) | [中文](#chinese)
 
-<a name="chinese"></a>
+<div id="chinese">
+
 ## 中文说明
 
-一个帮助 TikTok Shop 卖家快速查看和复制销售数据的 Chrome 扩展程序。
+一个帮助 TikTok Shop 卖家快速查看和复制销售数据的 Chrome/Safari 扩展程序。
 
 ### 功能特点
 
@@ -26,66 +27,117 @@
 
 ### 安装说明
 
+#### Chrome 版本
 1. 下载项目代码
 2. 打开 Chrome 浏览器，进入扩展程序管理页面 (`chrome://extensions/`)
 3. 开启"开发者模式"
 4. 点击"加载已解压的扩展程序"
-5. 选择项目文件夹
+5. 选择项目中的 `chrome` 目录
 
-### 使用方法
+#### Safari 版本
+1. 下载项目代码
+2. 使用 Xcode 打开 `safari/TTShopGMVHelper` 目录
+3. 构建并运行项目
+4. 在 Safari 的扩展设置中启用该扩展
 
-1. 登录 TikTok Shop 卖家中心
-2. 点击扩展图标打开数据面板
-3. 查看自动提取的销售数据
-4. 使用复制按钮或一键复制功能获取数据
+### 更新记录
+
+#### 功能更新
+- feat: 添加一键复制按钮到界面
+- feat: 实现一键复制的核心逻辑
+- feat: 添加Safari扩展图标
+
+#### 样式更新
+- style: 添加一键复制按钮的样式设计
+
+#### 文档更新
+- docs: 添加项目说明文档
+- docs: 添加中英文切换功能
+
+#### 代码重构
+- refactor: 更新manifest.json中的图标路径
+- refactor: 优化项目结构，分离Chrome和Safari版本
+
+#### 其他更新
+- chore: 添加.gitignore文件
+- chore: 更新gitignore以排除Xcode用户特定文件
+- chore: 清理冗余的图片文件
 
 ### 技术栈
 
 - HTML5
 - CSS3 (支持现代浏览器特性)
 - JavaScript (原生)
+- Swift (Safari 扩展)
 
----
+</div>
 
-<a name="english"></a>
-## English Documentation
+<div id="english">
 
-A Chrome extension helping TikTok Shop sellers quickly view and copy sales data.
+## English Description
+
+A Chrome/Safari extension helping TikTok Shop sellers quickly view and copy sales data.
 
 ### Features
 
-- Auto-extract and display key sales data:
+- Automatically extract and display key sales data:
   - GMV (Gross Merchandise Value)
-  - Affiliate GMV (Affiliate Marketing GMV)
-  - Non-Affiliate GMV (Non-Affiliate Marketing GMV)
-  - Orders (Order Count)
+  - Affiliate GMV
+  - Non-Affiliate GMV
+  - Orders Count
 
-- Convenient Data Copy Features:
+- Convenient data copying:
   - Quick copy for individual data
-  - One-click copy for all data (tab-separated for easy spreadsheet pasting)
+  - One-click copy for all data (tab-separated for spreadsheet pasting)
 
-- Elegant User Interface:
+- Elegant user interface:
   - Dark/Light theme support
-  - Gradient buttons and animations
+  - Gradient buttons with animations
   - Adaptive value display
 
 ### Installation
 
+#### Chrome Version
 1. Download the project code
-2. Open Chrome and go to extensions page (`chrome://extensions/`)
+2. Open Chrome browser, go to extensions management page (`chrome://extensions/`)
 3. Enable "Developer mode"
 4. Click "Load unpacked"
-5. Select the project folder
+5. Select the `chrome` directory in the project
 
-### Usage
+#### Safari Version
+1. Download the project code
+2. Open `safari/TTShopGMVHelper` directory with Xcode
+3. Build and run the project
+4. Enable the extension in Safari's extension settings
 
-1. Log in to TikTok Shop Seller Center
-2. Click the extension icon to open data panel
-3. View auto-extracted sales data
-4. Use copy buttons or one-click copy feature to get data
+### Update History
+
+#### Feature Updates
+- feat: Add one-click copy button to UI
+- feat: Implement one-click copy core logic
+- feat: Add Safari extension icons
+
+#### Style Updates
+- style: Add one-click copy button styling
+
+#### Documentation Updates
+- docs: Add project documentation
+- docs: Add English-Chinese language switch
+
+#### Code Refactoring
+- refactor: Update manifest.json icon paths
+- refactor: Optimize project structure, separate Chrome and Safari versions
+
+#### Other Updates
+- chore: Add .gitignore file
+- chore: Update gitignore to exclude Xcode user-specific files
+- chore: Clean up redundant image files
 
 ### Tech Stack
 
 - HTML5
-- CSS3 (Modern browser features supported)
-- JavaScript (Vanilla) 
+- CSS3 (Modern browser features)
+- JavaScript (Vanilla)
+- Swift (Safari extension)
+
+</div> 
