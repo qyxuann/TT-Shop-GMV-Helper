@@ -5,7 +5,11 @@
   "description": "帮助TikTok Shop卖家快速查看和复制GMV数据",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://seller-us.tiktok.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -19,5 +23,9 @@
     "16": "images/icon16.png",
     "48": "images/icon48.png",
     "128": "images/icon128.png"
-  }
+  },
+  "content_scripts": [{
+    "matches": ["https://seller-us.tiktok.com/*"],
+    "js": ["content.js"]
+  }]
 } 

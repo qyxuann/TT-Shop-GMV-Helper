@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = themeToggle.querySelector('.theme-icon');
   
-  // 从 chrome.storage 中获取保存的主题
+  // 从 storage 中获取保存的主题
   chrome.storage.sync.get('theme', function(data) {
     const savedTheme = data.theme || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -42,160 +42,45 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    chrome.scripting.executeScript({
-      target: {tabId: tabs[0].id},
-      func: function() {
-        // 在指定范围内查找值
-        function findValueInContainer() {
-          const container = document.evaluate(
-            '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div[1]/div',
-            document,
-            null,
-            XPathResult.FIRST_ORDERED_NODE_TYPE,
-            null
-          ).singleNodeValue;
-          
-          console.log('Container found:', container);
-          
-          if (!container) return { gmv: 0, affiliate: 0, orders: 0 };
-          
-          // 查找所有文本节点
-          const textNodes = [];
-          const walker = document.createTreeWalker(
-            container,
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
-          );
-          
-          let node;
-          let gmvValue = 0;
-          let affiliateValue = 0;
-          let orderValue = 0;
-          let collectingGMV = false;
-          let collectingAffiliate = false;
-          let collectingOrder = false;
-          let currentValue = '';
-          let orderNodes = [];  // 用于收集 Orders 相关的节点
-          let isCollectingOrders = false;  // 标记是否正在收集 Orders 的值
-          
-          while (node = walker.nextNode()) {
-            const text = node.textContent.trim();
-            console.log('Found text:', text);
-            if (text === 'GMV' && !gmvValue && !text.includes('Affiliate')) {
-              console.log('Found GMV label');
-              collectingGMV = true;
-              currentValue = '';
-            } else if (text === 'Affiliate GMV' && !affiliateValue) {
-              console.log('Found Affiliate GMV label');
-              collectingAffiliate = true;
-              currentValue = '';
-            } else if (text === 'Orders' && !orderValue) {
-              console.log('Found Orders label');
-              isCollectingOrders = true;
-              currentValue = '';
-            } else if (collectingGMV || collectingAffiliate) {
-              currentValue += text;
-              
-              // 检查是否是百分比或其他结束标记
-              if (text.includes('%') || text.includes('Vs.')) {
-                if (isCollectingOrders && currentValue) {
-                  // 处理收集到的节点
-                  const fullNumber = orderNodes.join('').match(/[\d,]+/)[0];
-                  orderValue = parseInt(fullNumber.replace(/,/g, ''));
-                  console.log('Set Order value:', orderValue);
-                  isCollectingOrders = false;
-                  orderNodes = [];
-                }
-              }
-
-              const match = /\$([\d,]+\.\d{2})/.exec(currentValue);  // 严格匹配货币格式
-              if (match) {
-                // GMV 和 Affiliate GMV 的处理
-                const value = parseFloat(match[1].replace(/,/g, ''));
-                if (collectingGMV) {
-                  gmvValue = value;
-                  collectingGMV = false;
-                  console.log('Set GMV value:', gmvValue);
-                } else if (collectingAffiliate) {
-                  affiliateValue = value;
-                  collectingAffiliate = false;
-                  console.log('Set Affiliate value:', affiliateValue);
-                }
-                currentValue = '';
-              }
-            } else if (isCollectingOrders) {
-              // 收集 Orders 相关的节点直到遇到下一个标签或百分比
-              if (text.includes('%') || text.includes('Vs.')) {  // 遇到结束标记时处理
-                // 处理收集到的节点
-                const combinedText = orderNodes.join('');
-                const match = combinedText.match(/[\d,]+/);
-                if (match) {
-                  orderValue = parseInt(match[0].replace(/,/g, ''));
-                  console.log('Combined Order text:', combinedText);
-                  console.log('Extracted number:', match[0]);
-                  console.log('Final Order value:', orderValue);
-                }
-                isCollectingOrders = false;
-                orderNodes = [];
-              } else {
-                orderNodes.push(text);
-                console.log('Current Order nodes:', orderNodes);
-              }
-            }
-          }
-          
-          // 如果还在收集 Orders，最后处理一次
-          if (isCollectingOrders && orderNodes.length > 0) {
-            const combinedText = orderNodes.join('');
-            const match = combinedText.match(/[\d,]+/);
-            if (match) {
-              orderValue = parseInt(match[0].replace(/,/g, ''));
-              console.log('Final Order processing:', match[0], orderValue);
-            }
-          }
-          
-          console.log('Final values:', { gmv: gmvValue, affiliate: affiliateValue, orders: orderValue });
-          return { gmv: gmvValue, affiliate: affiliateValue, orders: orderValue };
+    // 发送消息给 content script 获取数据
+    try {
+      chrome.tabs.sendMessage(tabs[0].id, {action: "getData"}, function(response) {
+        if (chrome.runtime.lastError) {
+          updateValueWithAdaptiveSize(diffValue, '提取失败');
+          updateValueWithAdaptiveSize(gmvValue, '---');
+          updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(orderValue, '---');
+          return;
+        }
+        
+        if (!response) {
+          updateValueWithAdaptiveSize(diffValue, '提取失败');
+          updateValueWithAdaptiveSize(gmvValue, '---');
+          updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(orderValue, '---');
+          return;
         }
 
-        // 获取值并计算差值
-        const values = findValueInContainer();
-        console.log('Calculated difference:', values);
-        return values;
-      },
-      args: []
-    }, (results) => {
-      if (chrome.runtime.lastError) {
-        updateValueWithAdaptiveSize(diffValue, '提取错误：' + chrome.runtime.lastError.message);
-        updateValueWithAdaptiveSize(gmvValue, '---');
-        updateValueWithAdaptiveSize(affiliateValue, '---');
-        updateValueWithAdaptiveSize(orderValue, '---');
-        return;
-      }
-
-      if (!results || !results[0]) {
-        updateValueWithAdaptiveSize(diffValue, '提取失败');
-        updateValueWithAdaptiveSize(gmvValue, '---');
-        updateValueWithAdaptiveSize(affiliateValue, '---');
-        updateValueWithAdaptiveSize(orderValue, '---');
-        return;
-      }
-
-      const values = results[0].result;
-      if (values && typeof values.gmv === 'number' && typeof values.affiliate === 'number' && typeof values.orders === 'number') {
-        updateValueWithAdaptiveSize(gmvValue, values.gmv.toFixed(2));
-        updateValueWithAdaptiveSize(affiliateValue, values.affiliate.toFixed(2));
-        updateValueWithAdaptiveSize(orderValue, values.orders.toString());
-        const difference = Math.abs(values.gmv - values.affiliate);
-        updateValueWithAdaptiveSize(diffValue, difference.toFixed(2));
-      } else {
-        updateValueWithAdaptiveSize(diffValue, '提取失败');
-        updateValueWithAdaptiveSize(gmvValue, '---');
-        updateValueWithAdaptiveSize(affiliateValue, '---');
-        updateValueWithAdaptiveSize(orderValue, '---');
-      }
-    });
+        const values = response.data;
+        if (values && typeof values.gmv === 'number' && typeof values.affiliate === 'number' && typeof values.orders === 'number') {
+          updateValueWithAdaptiveSize(gmvValue, values.gmv.toFixed(2));
+          updateValueWithAdaptiveSize(affiliateValue, values.affiliate.toFixed(2));
+          updateValueWithAdaptiveSize(orderValue, values.orders.toString());
+          const difference = Math.abs(values.gmv - values.affiliate);
+          updateValueWithAdaptiveSize(diffValue, difference.toFixed(2));
+        } else {
+          updateValueWithAdaptiveSize(diffValue, '提取失败');
+          updateValueWithAdaptiveSize(gmvValue, '---');
+          updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(orderValue, '---');
+        }
+      });
+    } catch (error) {
+      updateValueWithAdaptiveSize(diffValue, '提取失败');
+      updateValueWithAdaptiveSize(gmvValue, '---');
+      updateValueWithAdaptiveSize(affiliateValue, '---');
+      updateValueWithAdaptiveSize(orderValue, '---');
+    }
   });
 
   // 为所有复制按钮添加功能
@@ -236,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   }
 
-  // 在更新数值的地方添加以下函数
   function updateValueWithAdaptiveSize(element, value) {
     element.textContent = value;
     
@@ -260,13 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const baseWidth = 140;
     const contentLength = width > baseWidth ? Math.ceil((width - baseWidth) / 10) + 8 : 8;
     
-    console.log(`Value: ${value}, Width: ${width}px, Length: ${contentLength}`);
-    
     document.body.removeChild(measureSpan);
     element.style.setProperty('--content-length', contentLength);
   }
-
-  // 使用示例：
-  // 将原来的 element.textContent = value 改为：
-  updateValueWithAdaptiveSize(element, value);
 }); 
