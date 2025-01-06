@@ -2,33 +2,63 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getData") {
         // 获取页面数据
-        const data = findValueInContainer();
-        sendResponse({ success: true, data: data });
+        const mainData = findValueInContainer();
+        const livesValue = findLivesValue();
+        sendResponse({ 
+            success: true, 
+            data: { 
+                ...mainData,
+                lives: livesValue 
+            } 
+        });
     }
     return true; // 保持消息通道开放
 });
 
-// 提取页面数据的函数
-function findValueInContainer() {
-    // 尝试多个可能的 XPath
-    const xpaths = [
-        '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div[1]/div',
-        '//div[contains(@class, "overview-card")]',
-        '//div[contains(text(), "GMV")]/..'
-    ];
+// 提取LIVEs Linked accounts的值
+function findLivesValue() {
+    const livesContainer = document.evaluate(
+        '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/div/div/div/table/tbody/tr[2]/td/div/span[2]/div/div[2]/div/div/div',
+        document,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
+
+    if (!livesContainer) return 0;
+
+    const walker = document.createTreeWalker(
+        livesContainer,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    let node;
+    let currentValue = '';
     
-    let container = null;
-    for (const xpath of xpaths) {
-        container = document.evaluate(
-            xpath,
-            document,
-            null,
-            XPathResult.FIRST_ORDERED_NODE_TYPE,
-            null
-        ).singleNodeValue;
+    while (node = walker.nextNode()) {
+        const text = node.textContent.trim();
+        currentValue += text;
         
-        if (container) break;
+        const match = /\$([\d,]+\.\d{2})/.exec(currentValue);
+        if (match) {
+            return parseFloat(match[1].replace(/,/g, ''));
+        }
     }
+    
+    return 0;
+}
+
+// 提取页面主要数据的函数
+function findValueInContainer() {
+    const container = document.evaluate(
+        '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div[1]/div',
+        document,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
     
     if (!container) return { gmv: 0, affiliate: 0, orders: 0 };
     
@@ -64,18 +94,6 @@ function findValueInContainer() {
             currentValue = '';
         } else if (collectingGMV || collectingAffiliate) {
             currentValue += text;
-            
-            // 检查是否是百分比或其他结束标记
-            if (text.includes('%') || text.includes('Vs.')) {
-                if (isCollectingOrders && currentValue) {
-                    const fullNumber = orderNodes.join('').match(/[\d,]+/)?.[0];
-                    if (fullNumber) {
-                        orderValue = parseInt(fullNumber.replace(/,/g, ''));
-                    }
-                    isCollectingOrders = false;
-                    orderNodes = [];
-                }
-            }
 
             const match = /\$([\d,]+\.\d{2})/.exec(currentValue);  // 严格匹配货币格式
             if (match) {

@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const diffValue = document.getElementById('diffValue');
   const gmvValue = document.getElementById('gmvValue');
   const affiliateValue = document.getElementById('affiliateValue');
+  const livesValue = document.getElementById('livesValue');
   const orderValue = document.getElementById('orderValue');
   const copyButtons = document.querySelectorAll('.copyButton');
 
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       diffValue.textContent = '---';
       gmvValue.textContent = '---';
       affiliateValue.textContent = '---';
+      livesValue.textContent = '---';
       orderValue.textContent = '---';
       return;
     }
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
           updateValueWithAdaptiveSize(diffValue, '提取失败');
           updateValueWithAdaptiveSize(gmvValue, '---');
           updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(livesValue, '---');
           updateValueWithAdaptiveSize(orderValue, '---');
           return;
         }
@@ -57,14 +60,16 @@ document.addEventListener('DOMContentLoaded', function() {
           updateValueWithAdaptiveSize(diffValue, '提取失败');
           updateValueWithAdaptiveSize(gmvValue, '---');
           updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(livesValue, '---');
           updateValueWithAdaptiveSize(orderValue, '---');
           return;
         }
 
         const values = response.data;
-        if (values && typeof values.gmv === 'number' && typeof values.affiliate === 'number' && typeof values.orders === 'number') {
+        if (values && typeof values.gmv === 'number' && typeof values.affiliate === 'number' && typeof values.lives === 'number' && typeof values.orders === 'number') {
           updateValueWithAdaptiveSize(gmvValue, values.gmv.toFixed(2));
           updateValueWithAdaptiveSize(affiliateValue, values.affiliate.toFixed(2));
+          updateValueWithAdaptiveSize(livesValue, values.lives.toFixed(2));
           updateValueWithAdaptiveSize(orderValue, values.orders.toString());
           const difference = Math.abs(values.gmv - values.affiliate);
           updateValueWithAdaptiveSize(diffValue, difference.toFixed(2));
@@ -72,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
           updateValueWithAdaptiveSize(diffValue, '提取失败');
           updateValueWithAdaptiveSize(gmvValue, '---');
           updateValueWithAdaptiveSize(affiliateValue, '---');
+          updateValueWithAdaptiveSize(livesValue, '---');
           updateValueWithAdaptiveSize(orderValue, '---');
         }
       });
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updateValueWithAdaptiveSize(diffValue, '提取失败');
       updateValueWithAdaptiveSize(gmvValue, '---');
       updateValueWithAdaptiveSize(affiliateValue, '---');
+      updateValueWithAdaptiveSize(livesValue, '---');
       updateValueWithAdaptiveSize(orderValue, '---');
     }
   });
@@ -98,8 +105,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const gmv = document.getElementById('gmvValue').textContent;
     const affiliate = document.getElementById('affiliateValue').textContent;
     const orders = document.getElementById('orderValue').textContent;
+    const lives = document.getElementById('livesValue').textContent;
     
-    const allData = `${gmv}\t${affiliate}\t${orders}`;
+    const allData = `${gmv}\t${affiliate}\t${orders}\t${lives}`;
     copyToClipboard(allData, this);
   });
 
