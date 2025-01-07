@@ -2,13 +2,55 @@
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getData") {
         // 获取页面数据
-        const data = findValueInContainer();
-        sendResponse({ success: true, data: data });
+        const mainData = findValueInContainer();
+        const livesValue = findLivesValue();
+        sendResponse({ 
+            success: true, 
+            data: { 
+                ...mainData,
+                lives: livesValue 
+            } 
+        });
     }
     return true; // 保持消息通道开放
 });
 
-// 提取页面数据的函数
+// 提取LIVEs Linked accounts的值
+function findLivesValue() {
+    const livesContainer = document.evaluate(
+        '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/div/div/div/table/tbody/tr[2]/td/div/span[2]/div/div[2]/div/div/div',
+        document,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
+
+    if (!livesContainer) return 0;
+
+    const walker = document.createTreeWalker(
+        livesContainer,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    let node;
+    let currentValue = '';
+    
+    while (node = walker.nextNode()) {
+        const text = node.textContent.trim();
+        currentValue += text;
+        
+        const match = /\$([\d,]+\.\d{2})/.exec(currentValue);
+        if (match) {
+            return parseFloat(match[1].replace(/,/g, ''));
+        }
+    }
+    
+    return 0;
+}
+
+// 提取页面主要数据的函数
 function findValueInContainer() {
     const container = document.evaluate(
         '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div[1]/div',
@@ -17,8 +59,6 @@ function findValueInContainer() {
         XPathResult.FIRST_ORDERED_NODE_TYPE,
         null
     ).singleNodeValue;
-    
-    console.log('Container found:', container);
     
     if (!container) return { gmv: 0, affiliate: 0, orders: 0 };
     
@@ -42,32 +82,18 @@ function findValueInContainer() {
     
     while (node = walker.nextNode()) {
         const text = node.textContent.trim();
-        console.log('Found text:', text);
+        
         if (text === 'GMV' && !gmvValue && !text.includes('Affiliate')) {
-            console.log('Found GMV label');
             collectingGMV = true;
             currentValue = '';
         } else if (text === 'Affiliate GMV' && !affiliateValue) {
-            console.log('Found Affiliate GMV label');
             collectingAffiliate = true;
             currentValue = '';
         } else if (text === 'Orders' && !orderValue) {
-            console.log('Found Orders label');
             isCollectingOrders = true;
             currentValue = '';
         } else if (collectingGMV || collectingAffiliate) {
             currentValue += text;
-            
-            // 检查是否是百分比或其他结束标记
-            if (text.includes('%') || text.includes('Vs.')) {
-                if (isCollectingOrders && currentValue) {
-                    const fullNumber = orderNodes.join('').match(/[\d,]+/)[0];
-                    orderValue = parseInt(fullNumber.replace(/,/g, ''));
-                    console.log('Set Order value:', orderValue);
-                    isCollectingOrders = false;
-                    orderNodes = [];
-                }
-            }
 
             const match = /\$([\d,]+\.\d{2})/.exec(currentValue);  // 严格匹配货币格式
             if (match) {
@@ -75,11 +101,9 @@ function findValueInContainer() {
                 if (collectingGMV) {
                     gmvValue = value;
                     collectingGMV = false;
-                    console.log('Set GMV value:', gmvValue);
                 } else if (collectingAffiliate) {
                     affiliateValue = value;
                     collectingAffiliate = false;
-                    console.log('Set Affiliate value:', affiliateValue);
                 }
                 currentValue = '';
             }
@@ -89,7 +113,6 @@ function findValueInContainer() {
                 const match = combinedText.match(/[\d,]+/);
                 if (match) {
                     orderValue = parseInt(match[0].replace(/,/g, ''));
-                    console.log('Final Order value:', orderValue);
                 }
                 isCollectingOrders = false;
                 orderNodes = [];
@@ -105,10 +128,8 @@ function findValueInContainer() {
         const match = combinedText.match(/[\d,]+/);
         if (match) {
             orderValue = parseInt(match[0].replace(/,/g, ''));
-            console.log('Final Order processing:', orderValue);
         }
     }
     
-    console.log('Final values:', { gmv: gmvValue, affiliate: affiliateValue, orders: orderValue });
     return { gmv: gmvValue, affiliate: affiliateValue, orders: orderValue };
 }

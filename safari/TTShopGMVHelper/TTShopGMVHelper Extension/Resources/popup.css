@@ -88,20 +88,13 @@ h1 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   box-sizing: border-box;
-  transition: background-color 0.3s, border-color 0.3s;
-  position: relative;
-  z-index: 1;
 }
 
 .value-row {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
-  position: relative;
   height: 32px;
-  gap: 8px;
-  overflow: visible;
 }
 
 .value-row:last-child {
@@ -111,27 +104,21 @@ h1 {
 .label {
   color: var(--label-color);
   font-size: 14px;
-  min-width: 140px;
-  text-align: left;
+  width: 150px;
   flex-shrink: 0;
 }
 
-#gmvValue, #affiliateValue, #diffValue, #orderValue {
-  font-size: 24px;
+#gmvValue, #affiliateValue, #diffValue, #orderValue, #livesValue {
+  font-size: calc(24px - var(--content-length) * 0.5px);
   font-weight: bold;
   background: linear-gradient(45deg, #FF0050, #00F2EA);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  min-width: 120px;
-  max-width: none;
   text-align: right;
-  white-space: nowrap;
+  width: 130px;
   margin-left: auto;
-  margin-right: 0;
-  padding-right: 0;
-  position: relative;
-  z-index: 2;
+  flex-shrink: 0;
 }
 
 .copyButton {
@@ -144,16 +131,13 @@ h1 {
   font-size: 12px;
   font-weight: 500;
   transition: all 0.2s ease;
-  min-width: 45px;
+  width: 40px;
   height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  margin-left: 8px;
+  margin: 0 6px;
   flex-shrink: 0;
-  position: relative;
-  z-index: 2;
 }
 
 .copyButton:hover {
@@ -227,7 +211,7 @@ h1 {
 
 /* 添加自适应字体大小 */
 @media screen and (max-width: 400px) {
-  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue, #livesValue {
     font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (400 - 300)));
     min-width: 100px;
   }
@@ -239,7 +223,7 @@ h1 {
 
 /* 添加数值长度自适应字体大小 */
 @media screen and (min-width: 401px) {
-  #gmvValue, #affiliateValue, #diffValue, #orderValue {
+  #gmvValue, #affiliateValue, #diffValue, #orderValue, #livesValue {
     font-size: clamp(14px, 24px, 24px);  /* 最小 14px，最大 24px */
   }
   
@@ -247,11 +231,21 @@ h1 {
   #gmvValue:not(:empty), 
   #affiliateValue:not(:empty), 
   #diffValue:not(:empty), 
-  #orderValue:not(:empty) {
+  #orderValue:not(:empty),
+  #livesValue:not(:empty) {
     font-size: clamp(
       16px,  /* 最小字体大小改为 16px */
       calc(24px - (var(--content-length, 0) - 8) * 0.8px),  /* 调整缩放比例 */
       24px   /* 最大字体大小 */
     );
   }
+} 
+
+/* 复选框样式 */
+.copyCheckbox {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-right: 2px;
 } 

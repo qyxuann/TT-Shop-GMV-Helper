@@ -102,13 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // 添加一键复制所有数据的功能
   const copyAllButton = document.getElementById('copyAllButton');
   copyAllButton.addEventListener('click', function() {
-    const gmv = document.getElementById('gmvValue').textContent;
-    const affiliate = document.getElementById('affiliateValue').textContent;
-    const orders = document.getElementById('orderValue').textContent;
-    const lives = document.getElementById('livesValue').textContent;
+    const selectedData = [];
+    const checkboxes = document.querySelectorAll('.copyCheckbox');
     
-    const allData = `${gmv}\t${affiliate}\t${orders}\t${lives}`;
-    copyToClipboard(allData, this);
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        const targetId = checkbox.dataset.target;
+        const value = document.getElementById(targetId).textContent;
+        selectedData.push(value);
+      }
+    });
+    
+    if (selectedData.length > 0) {
+      const allData = selectedData.join('\t');
+      copyToClipboard(allData, this);
+    }
   });
 
   // 封装复制功能
