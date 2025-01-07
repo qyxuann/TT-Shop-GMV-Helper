@@ -163,4 +163,26 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.removeChild(measureSpan);
     element.style.setProperty('--content-length', contentLength);
   }
+
+  // 从 storage 中恢复复选框状态
+  const checkboxes = document.querySelectorAll('.copyCheckbox');
+  chrome.storage.sync.get('checkboxStates', function(data) {
+    const savedStates = data.checkboxStates || {};
+    checkboxes.forEach(checkbox => {
+      const targetId = checkbox.dataset.target;
+      // 如果没有保存的状态，默认为选中
+      checkbox.checked = savedStates[targetId] !== undefined ? savedStates[targetId] : true;
+    });
+  });
+
+  // 监听复选框变化并保存状态
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const states = {};
+      checkboxes.forEach(cb => {
+        states[cb.dataset.target] = cb.checked;
+      });
+      chrome.storage.sync.set({ checkboxStates: states });
+    });
+  });
 }); 

@@ -93,13 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // 添加一键复制所有数据的功能
   const copyAllButton = document.getElementById('copyAllButton');
   copyAllButton.addEventListener('click', function() {
-    const gmv = document.getElementById('gmvValue').textContent;
-    const affiliate = document.getElementById('affiliateValue').textContent;
-    const orders = document.getElementById('orderValue').textContent;
-    const lives = document.getElementById('livesValue').textContent;
+    const selectedData = [];
+    const checkboxes = document.querySelectorAll('.copyCheckbox');
     
-    const allData = `${gmv}\t${affiliate}\t${orders}\t${lives}`;
-    copyToClipboard(allData, this);
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        const targetId = checkbox.dataset.target;
+        const value = document.getElementById(targetId).textContent;
+        selectedData.push(value);
+      }
+    });
+    
+    if (selectedData.length > 0) {
+      const allData = selectedData.join('\t');
+      copyToClipboard(allData, this);
+    }
   });
 
   // 封装复制功能
@@ -146,4 +154,26 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.removeChild(measureSpan);
     element.style.setProperty('--content-length', contentLength);
   }
+
+  // 从 storage 中恢复复选框状态
+  const checkboxes = document.querySelectorAll('.copyCheckbox');
+  browser.storage.sync.get('checkboxStates', function(data) {
+    const savedStates = data.checkboxStates || {};
+    checkboxes.forEach(checkbox => {
+      const targetId = checkbox.dataset.target;
+      // 如果没有保存的状态，默认为选中
+      checkbox.checked = savedStates[targetId] !== undefined ? savedStates[targetId] : true;
+    });
+  });
+
+  // 监听复选框变化并保存状态
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const states = {};
+      checkboxes.forEach(cb => {
+        states[cb.dataset.target] = cb.checked;
+      });
+      browser.storage.sync.set({ checkboxStates: states });
+    });
+  });
 }); 
