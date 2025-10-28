@@ -17,36 +17,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // 提取LIVEs Linked accounts的值
 function findLivesValue() {
-    const livesContainer = document.evaluate(
-        '/html/body/div[1]/section/section/div/main/div[2]/div[2]/div/div/div/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/div/div/div/table/tbody/tr[2]/td/div/span[2]/div/div[2]/div/div/div',
-        document,
-        null,
-        XPathResult.FIRST_ORDERED_NODE_TYPE,
-        null
-    ).singleNodeValue;
+    // 使用用户提供的 CSS 选择器
+    const selector = "#GEC-main > div.flex.flex-col.layout__largeCentered--FqeE1 > div.layout__pageSidebar--TCgwA > div > div > div > div > div > div:nth-child(3) > div > div:nth-child(2) > div > div.index__table--1UjHY > div > div > div > div > div > div > table > tbody > tr:nth-child(2) > td > div > span.theme-arco-table-cell-wrap-value > div > div.flex.flex-row.gap-8.w-\\[220px\\].justify-between > div > div > div";
+    const livesDiv = document.querySelector(selector);
+    if (!livesDiv) return 0;
 
-    if (!livesContainer) return 0;
-
-    const walker = document.createTreeWalker(
-        livesContainer,
-        NodeFilter.SHOW_TEXT,
-        null,
-        false
-    );
-
-    let node;
-    let currentValue = '';
-    
-    while (node = walker.nextNode()) {
-        const text = node.textContent.trim();
-        currentValue += text;
-        
-        const match = /\$([\d,]+\.\d{2})/.exec(currentValue);
-        if (match) {
-            return parseFloat(match[1].replace(/,/g, ''));
-        }
+    // 提取文本中的金额
+    const text = livesDiv.textContent.trim();
+    const match = /\$([\d,]+\.\d{2})/.exec(text);
+    if (match) {
+        return parseFloat(match[1].replace(/,/g, ''));
     }
-    
     return 0;
 }
 
